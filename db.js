@@ -10,9 +10,9 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) {
-        console.log("❌ Erro ao conectar no banco:", err);
+        console.log("Erro ao conectar no banco:", err);
     } else {
-        console.log("✅ Banco conectado com sucesso!");
+        console.log("Banco conectado com sucesso!");
     }
 });
 
