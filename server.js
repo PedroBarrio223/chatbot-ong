@@ -4,12 +4,10 @@ const { processarMensagem } = require('./bot');
 const app = express();
 app.use(express.json());
 
-// rota teste
 app.get('/', (req, res) => {
-    res.send("API rodando 🚀");
+    res.send("API rodando");
 });
 
-// simulação do WhatsApp
 app.post('/webhook', async (req, res) => {
 
     const text = req.body.text;
@@ -22,6 +20,6 @@ app.post('/webhook', async (req, res) => {
     });
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Servidor rodando");
 });
