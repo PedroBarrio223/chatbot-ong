@@ -45,28 +45,6 @@ function ajuda() {
             Para mais informações, fale com um atendente (opção 6).`;
             }
 
-function endereco() {
-    return `Estamos localizados em Guarulhos - SP.
-
-            Para mais informações, entre em contato com nossa equipe ou acompanhe nossas redes sociais.
-            
-            Estamos à disposição para atender você.`;
-            }
-
-function atendente() {
-    return `Você será direcionado(a) para um de nossos atendentes.
-
-            Aguarde um momento, por favor.
-            
-            Agradecemos pelo contato.`;
-            }
-
-function erro() {
-    return `Opção inválida.
-
-            Por favor, selecione uma opção de 1 a 6 ou digite menu para voltar ao início.`;
-            }
-
 function listarProjetos() {
     return new Promise((resolve) => {
         db.query("SELECT * FROM projetos", (err, res) => {
@@ -105,11 +83,33 @@ function voluntariado() {
             Exemplo: cadastrar João eventos`;
             }
 
+function endereco() {
+    return `Estamos localizados em Guarulhos - SP.
+
+            Para mais informações, entre em contato com nossa equipe ou acompanhe nossas redes sociais.
+            
+            Estamos à disposição para atender você.`;
+            }
+
+function atendente() {
+    return `Você será direcionado(a) para um de nossos atendentes.
+
+            Aguarde um momento, por favor.
+            
+            Agradecemos pelo contato.`;
+            }
+
+function erro() {
+    return `Opção inválida.
+
+            Por favor, selecione uma opção de 1 a 6 ou digite menu para voltar ao início.`;
+            }
+
 async function processarMensagem(from, text) {
 
     if (!text) return erro();
 
-    text = text.trim();
+    text = text.trim().toLowerCase();
 
     if (text === "menu") return menu();
 
@@ -127,24 +127,24 @@ async function processarMensagem(from, text) {
 
     if (text === "6") return atendente();
 
-    if (text.toLowerCase().startsWith("cadastrar")) {
+    if (text.startsWith("cadastrar")) {
 
         const partes = text.split(" ");
-
+    
         if (partes.length < 3) {
             return "Use: cadastrar Nome Area";
         }
-
-        const nome = partes[1];
-        const area = partes.slice(2).join(" ");
-
+    
+        const nome = partes.slice(1, -1).join(" ");
+        const area = partes[partes.length - 1];
+    
         db.query(
             "INSERT INTO voluntarios (telefone, nome, area_interesse) VALUES (?, ?, ?)",
             [from, nome, area]
         );
-
+    
         return "Cadastro realizado com sucesso!";
-    }
+}
 
     return erro();
 }
