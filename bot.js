@@ -80,21 +80,23 @@ function voluntariado() {
             
             Para se cadastrar, digite:
             cadastrar SeuNome SuaArea
-            Exemplo: cadastrar João eventos`;
+            Exemplo: cadastrar Gustavo eventos`;
             }
 
 function endereco() {
-    return `Estamos localizados em Guarulhos - SP.
+    return `Estamos localizados na Rua Segundo Tenente Renato Ometi, em Guarulhos - SP.
 
-            Para mais informações, entre em contato com nossa equipe ou acompanhe nossas redes sociais.
+            Para mais informações, entre em contato com nossa equipe ou acompanhe nossas redes sociais (opção 6).
             
             Estamos à disposição para atender você.`;
             }
 
 function atendente() {
-    return `Você será direcionado(a) para um de nossos atendentes.
+    return `Você pode falar com um atendente por meio de um desses dois números:
 
-            Aguarde um momento, por favor.
+            +55 (11) 2412-2186
+
+            +55 (11) 2412-1659
             
             Agradecemos pelo contato.`;
             }
