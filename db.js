@@ -1,18 +1,18 @@
 const mysql = require('mysql2');
 
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT
+    host: "shuttle.proxy.rlwy.net",
+    user: "root",
+    password: "PpjtIDVEYZseRJdmszeCIEoZyqRtVtjI",
+    database: "railway",
+    port: 12039
 });
 
-db.connect((err) => {
+db.connect(err => {
     if (err) {
-        console.log("Erro ao conectar no banco:", err);
+        console.log("Erro ao conectar:", err);
     } else {
-        console.log("Banco conectado com sucesso!");
+        console.log("Banco conectado 🚀");
     }
 });
 
