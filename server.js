@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/bot', (req, res) => {
+app.get('/', (req, res) => {
     res.send("API rodando");
 });
 
@@ -14,6 +14,8 @@ app.post('/webhook', async (req, res) => {
 
     const text = req.body.Body;
     const from = req.body.From;
+
+    console.log("Mensagem:", text);
 
     const resposta = await processarMensagem(from, text);
 
