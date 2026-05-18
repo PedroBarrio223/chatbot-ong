@@ -137,7 +137,7 @@ async function processarMensagem(from, text) {
     text = text.trim();
     const comando = text.toLowerCase();
 
-    if (comando === "Menu" || comando === "Oi" || comando === "Olá" || comando === "Bom dia" || comando === "Boa tarde" || comando === "Boa noite") return menu();
+    if (comando === "menu" || comando === "oi" || comando === "olá" || comando === "bom dia" || comando === "boa tarde" || comando === "boa noite") return menu();
 
     if (comando === "1") return sobre();
 
@@ -153,12 +153,12 @@ async function processarMensagem(from, text) {
 
     if (comando === "6") return atendente();
 
-    if (comando.startsWith("Cadastrar")) {
+    if (comando.startsWith("cadastrar")) {
 
     const partes = text.split(" ");
 
     if (partes.length < 4) {
-        return "Use: Cadastrar Telefone Nome Email";
+        return "Use: cadastrar Telefone Nome Email";
     }
 
     const telefone = partes[1];
