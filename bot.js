@@ -134,8 +134,8 @@ async function processarMensagem(from, text) {
     if (!text) return erro();
 
 
-    text = text.trim().toLowerCase();
-
+    text = text.trim();
+    const comando = text.toLowerCase();
 
     if (text === "menu") return menu();
 
@@ -165,16 +165,17 @@ async function processarMensagem(from, text) {
 
         const partes = text.split(" ");
    
-        if (partes.length < 3) {
-            return "Use: cadastrar Nome Area";
+        if (partes.length < 4) {
+            return "Use: cadastrar Telefone Nome Email";
         }
-   
-        const nome = partes.slice(1, -1).join(" ");
-        const area = partes[partes.length - 1];
-   
+
+        const telefone = partes[1];
+        const email = partes[partes.length - 1];
+        const nome = partes.slice(2, -1).join(" ");
+
         db.query(
             "INSERT INTO voluntarios (telefone, nome, email) VALUES (?, ?, ?)",
-            [from, nome, area]
+            [telefone, nome, email]
         );
    
         return "Cadastro realizado com sucesso!";
