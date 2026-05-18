@@ -137,7 +137,7 @@ async function processarMensagem(from, text) {
     text = text.trim();
     const comando = text.toLowerCase();
 
-    if (comando === "menu") return menu();
+    if (comando === "Menu" || comando === "Oi" || comando === "Olá" || comando === "Bom dia" || comando === "Boa tarde" || comando === "Boa noite") return menu();
 
     if (comando === "1") return sobre();
 
@@ -153,25 +153,52 @@ async function processarMensagem(from, text) {
 
     if (comando === "6") return atendente();
 
-    if (comando.startsWith("cadastrar")) {
+    if (comando.startsWith("Cadastrar")) {
 
-        const partes = text.split(" ");
+    const partes = text.split(" ");
 
-        if (partes.length < 4) {
-            return "Use: cadastrar Telefone Nome Email";
-        }
+    if (partes.length < 4) {
+        return "Use: Cadastrar Telefone Nome Email";
+    }
 
-        const telefone = partes[1];
-        const email = partes[partes.length - 1];
-        const nome = partes.slice(2, -1).join(" ");
+    const telefone = partes[1];
+    const email = partes[partes.length - 1];
+    const nome = partes.slice(2, -1).join(" ");
+
+    return new Promise((resolve) => {
 
         db.query(
-            "INSERT INTO voluntarios (telefone, nome, email) VALUES (?, ?, ?)",
-            [telefone, nome,email]
-        );
+            "SELECT * FROM voluntarios WHERE telefone = ? OR email = ?",
+            [telefone, email],
+            (err, results) => {
 
-        return "Cadastro realizado com sucesso!";
-    }
+                if (err) {
+                    resolve("Erro ao verificar cadastro.");
+                    return;
+                }
+
+                if (results.length > 0) {
+                    resolve("Já existe um cadastro com esse telefone ou email.");
+                    return;
+                }
+
+                db.query(
+                    "INSERT INTO voluntarios (telefone, nome, email) VALUES (?, ?, ?)",
+                    [telefone, nome, email],
+                    (err) => {
+
+                        if (err) {
+                            resolve("Erro ao realizar cadastro.");
+                            return;
+                        }
+
+                        resolve("Cadastro realizado com sucesso!");
+                    }
+                );
+            }
+        );
+    });
+}
 
     return erro();
 }
