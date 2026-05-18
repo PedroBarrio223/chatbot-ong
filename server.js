@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
+app.get('/bot', (req, res) => {
     res.send("API rodando");
 });
 
