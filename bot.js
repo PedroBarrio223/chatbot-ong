@@ -97,7 +97,7 @@ Para se cadastrar, digite:
 cadastrar SeuTelefone SeuNome SeuEmail
 
 Exemplo:
-cadastrar 11 95666-9876 Gustavo gustavo@email.com`;
+cadastrar 1195666-9876 Gustavo gustavo@email.com`;
 }
 
 
