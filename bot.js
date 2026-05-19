@@ -47,7 +47,8 @@ function ajuda() {
 
 Toda ajuda contribui diretamente para o bem-estar das famílias atendidas.
 
-📞 Para mais informações, fale com um atendente (opção 6).`;
+📞 Para mais informações, fale com um atendente (opção 6).
+🔙 Digite "menu" para voltar ao início.`;
 }
 
 
@@ -64,12 +65,13 @@ function listarProjetos() {
             let resposta = `📚 O Núcleo Batuíra oferece diversos projetos sociais:\n\n`;
 
             res.forEach((p, index) => {
-                resposta += `${index + 1}️⃣ - ${p.titulo_projeto}\n`;
+                resposta += `${index + 1}. ${p.titulo_projeto}\n`;
             });
 
-            resposta += `\n✍️ Para saber mais sobre um projeto, digite:\n`;
+            resposta += `\n✍️ Para saber mais sobre um projeto, digite:\n\n`;
             resposta += `opcao número\n\n`;
-            resposta += `📌 Exemplo:\nopcao 1`;
+            resposta += `📌 Exemplo:\nopcao 1\n\n`;
+            resposta += `🔙 Digite "menu" para voltar ao início.`;
 
             resolve(resposta);
         });
@@ -97,8 +99,9 @@ function detalhesProjeto(numeroProjeto) {
                 resolve(
 `📚 ${projeto.titulo_projeto}
 
-📝 Descrição:
-${projeto.descricao_projeto}`
+📝 Descrição:\n
+${projeto.descricao_projeto}
+\n🔙 Digite "projetos" para voltar para a lista.`
                 );
             }
         );
@@ -124,17 +127,20 @@ Sua participação faz a diferença.
 cadastrar SeuTelefone SeuNome SeuEmail
 
 📌 Exemplo:
-cadastrar 1195666-9876 Gustavo gustavo@email.com`;
+cadastrar 1195666-9876 Gustavo gustavo@email.com
+
+🔙 Digite "menu" para voltar ao início.`;
 }
 
 
 function endereco() {
     return `📍 Estamos localizados na Rua Segundo Tenente Renato Ometi, em Guarulhos - SP.
 
+😊 Estamos à disposição para atender você.
 
 Para mais informações, entre em contato com nossa equipe ou acompanhe nossas redes sociais (opção 6).
 
-😊 Estamos à disposição para atender você.`;
+🔙 Digite "menu" para voltar ao início.`;
 }
 
 
@@ -144,7 +150,9 @@ function atendente() {
 📞 +55 (11) 2412-2186
 📞 +55 (11) 2412-1659
 
-💙 Agradecemos pelo contato.`;
+💙 Agradecemos pelo contato.
+
+🔙 Digite "menu" para voltar ao início.`;
 }
 
 function pix() {
@@ -155,7 +163,9 @@ Sua ajuda faz a diferença na vida de muitas famílias.
 📌 Chave PIX:
 nucleobatuira2@gmail.com
 
-💙 Agradecemos pela sua contribuição ao Núcleo Batuíra.`;
+💙 Agradecemos pela sua contribuição ao Núcleo Batuíra.
+
+🔙 Digite "menu" para voltar ao início.`;
 }
 
 function erro() {
@@ -200,6 +210,8 @@ async function processarMensagem(from, text) {
 
     return await detalhesProjeto(numeroProjeto);
     }
+
+    if (comando === "projetos") return listarProjetos();
 
     if (comando === "4") return voluntariado();
 
