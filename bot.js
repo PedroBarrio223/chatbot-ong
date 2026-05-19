@@ -47,7 +47,8 @@ function ajuda() {
 
 Toda ajuda contribui diretamente para o bem-estar das famílias atendidas.
 
-📞 Para mais informações, fale com um atendente (opção 6).
+📞 Para mais informações, fale com um atendente (6).
+
 🔙 Digite "menu" para voltar ao início.`;
 }
 
@@ -136,9 +137,9 @@ cadastrar 1195666-9876 Gustavo gustavo@email.com
 function endereco() {
     return `📍 Estamos localizados na Rua Segundo Tenente Renato Ometi, em Guarulhos - SP.
 
-😊 Estamos à disposição para atender você.
+Estamos à disposição para atender você.
 
-Para mais informações, entre em contato com nossa equipe ou acompanhe nossas redes sociais (opção 6).
+📞 Para mais informações, entre em contato com nossa equipe ou acompanhe nossas redes sociais (6).
 
 🔙 Digite "menu" para voltar ao início.`;
 }
@@ -260,7 +261,7 @@ async function processarMensagem(from, text) {
                             return;
                         }
 
-                        resolve("✅ Cadastro realizado com sucesso!");
+                        resolve(`✅ Cadastro realizado com sucesso!\n\n🔙 Digite "menu" para voltar ao início.`);
                     }
                 );
             }
