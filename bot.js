@@ -53,28 +53,56 @@ Toda ajuda contribui diretamente para o bem-estar das famílias atendidas.
 
 function listarProjetos() {
     return new Promise((resolve) => {
+
         db.query("SELECT * FROM projetos", (err, res) => {
 
-
             if (err) {
-                resolve("Erro ao buscar projetos.");
+                resolve("❌ Erro ao buscar projetos.");
                 return;
             }
 
+            let resposta = `📚 O Núcleo Batuíra oferece diversos projetos sociais:\n\n`;
 
-            let resposta = `O Núcleo Batuíra oferece diversos serviços sociais, como:\n\n`;
-
-
-            res.forEach(p => {
-                resposta += `• ${p.titulo_projeto}\n`;
+            res.forEach((p, index) => {
+                resposta += `${index + 1}️⃣ - ${p.titulo_projeto}\n`;
             });
 
-
-            resposta += `\nNosso objetivo é promover inclusão, desenvolvimento e qualidade de vida.`;
-
+            resposta += `\n✍️ Para saber mais sobre um projeto, digite:\n`;
+            resposta += `opcao número\n\n`;
+            resposta += `📌 Exemplo:\nopcao 1`;
 
             resolve(resposta);
         });
+
+    });
+}
+
+
+function detalhesProjeto(numeroProjeto) {
+
+    return new Promise((resolve) => {
+
+        db.query(
+            "SELECT * FROM projetos LIMIT 1 OFFSET ?",
+            [numeroProjeto - 1],
+            (err, res) => {
+
+                if (err || res.length === 0) {
+                    resolve("❌ Projeto não encontrado.");
+                    return;
+                }
+
+                const projeto = res[0];
+
+                resolve(
+`📚 ${projeto.titulo_projeto}
+
+📝 Descrição:
+${projeto.descricao_projeto}`
+                );
+            }
+        );
+
     });
 }
 
@@ -154,6 +182,23 @@ async function processarMensagem(from, text) {
 
     if (comando === "3") {
         return await listarProjetos();
+    }
+
+    if (comando.startsWith("opcao")) {
+
+    const partes = comando.split(" ");
+
+    if (partes.length < 2) {
+        return "❌ Use: opcao número";
+    }
+
+    const numeroProjeto = parseInt(partes[1]);
+
+    if (isNaN(numeroProjeto)) {
+        return "❌ Digite um número válido.";
+    }
+
+    return await detalhesProjeto(numeroProjeto);
     }
 
     if (comando === "4") return voluntariado();
