@@ -195,7 +195,7 @@ async function processarMensagem(from, text) {
         return await listarProjetos();
     }
 
-    if (comando.startsWith("opcao") || comando.startsWith("opção")) {
+    if (comando.startsWith("opcao")) {
 
     const partes = comando.split(" ");
 
