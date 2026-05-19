@@ -172,7 +172,7 @@ nucleobatuira2@gmail.com
 function erro() {
     return `❌ Opção inválida.
 
-🔙 Por favor, selecione uma opção de 1 a 6 ou digite "menu" para voltar ao início.`;
+🔙 Por favor, selecione uma opção de 1 a 7 ou digite "menu" para voltar ao início.`;
 }
 
 
@@ -195,7 +195,7 @@ async function processarMensagem(from, text) {
         return await listarProjetos();
     }
 
-    if (comando.startsWith("opcao")) {
+    if (comando.startsWith("opcao") || comando.startsWith("opção")) {
 
     const partes = comando.split(" ");
 
