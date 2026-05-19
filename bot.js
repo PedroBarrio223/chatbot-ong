@@ -9,46 +9,45 @@ Somos uma organização social dedicada ao apoio de famílias em situação de v
 
 Selecione uma das opções abaixo:
 
-1 - Sobre a ONG
-2 - Como ajudar
-3 - Projetos e serviços
-4 - Voluntariado
-5 - Endereço e contato
-6 - Falar com atendente
+1️⃣ - Sobre a ONG
+2️⃣ - Como ajudar
+3️⃣ - Projetos e serviços
+4️⃣ - Voluntariado
+5️⃣ - Endereço e contato
+6️⃣ - Falar com atendente
+7️⃣ - Doação via PIX
 
-Digite o número da opção desejada.`;
+✍ Digite o número da opção desejada.`;
 }
 
 
 function sobre() {
-    return `O Núcleo Batuíra é uma organização social localizada em Guarulhos (SP), que atua no apoio a famílias em situação de vulnerabilidade social.
+    return `🏢 O Núcleo Batuíra é uma organização social localizada em Guarulhos (SP), que atua no apoio a famílias em situação de vulnerabilidade social.
 
-
-Nossa missão é promover desenvolvimento social, educação e dignidade.
+🎯 Nossa missão é promover desenvolvimento social, educação e dignidade.
 
 Atuamos por meio de:
 
-• Educação infantil
-• Assistência social
-• Projetos comunitários
+• 👶 Educação infantil
+• 🤝 Assistência social
+• 🌎 Projetos comunitários
 
 Trabalhamos para fortalecer famílias e transformar realidades.
 
-Digite "menu" para voltar ao início.`;
+🔙 Digite "menu" para voltar ao início.`;
 }
 
 
 function ajuda() {
     return `Você pode contribuir com o Núcleo Batuíra de diversas formas:
 
-• Doações financeiras
-• Doação de roupas e itens essenciais
-• Doação de alimentos
-• Divulgação do nosso trabalho
+• 👕 Doação de roupas e itens essenciais
+• 🍞 Doação de alimentos
+• 📢 Divulgação do nosso trabalho
 
 Toda ajuda contribui diretamente para o bem-estar das famílias atendidas.
 
-Para mais informações, fale com um atendente (opção 6).`;
+📞 Para mais informações, fale com um atendente (opção 6).`;
 }
 
 
@@ -67,7 +66,7 @@ function listarProjetos() {
 
 
             res.forEach(p => {
-                resposta += `• ${p.nome}\n`;
+                resposta += `• ${p.titulo_projeto}\n`;
             });
 
 
@@ -81,33 +80,33 @@ function listarProjetos() {
 
 
 function voluntariado() {
-    return `Faça parte da nossa missão.
+    return `🙋 Faça parte da nossa missão.
 
 
 Como voluntário, você pode atuar em:
 
-• Apoio em atividades sociais
-• Eventos e campanhas
-• Projetos educacionais
+• 🤝 Apoio em atividades sociais
+• 🎉 Eventos e campanhas
+• 📚 Projetos educacionais
 
 Sua participação faz a diferença.
 
-Para se cadastrar, digite:
+📝 Para se cadastrar, digite:
 
 cadastrar SeuTelefone SeuNome SeuEmail
 
-Exemplo:
+📌 Exemplo:
 cadastrar 1195666-9876 Gustavo gustavo@email.com`;
 }
 
 
 function endereco() {
-    return `Estamos localizados na Rua Segundo Tenente Renato Ometi, em Guarulhos - SP.
+    return `📍 Estamos localizados na Rua Segundo Tenente Renato Ometi, em Guarulhos - SP.
 
 
 Para mais informações, entre em contato com nossa equipe ou acompanhe nossas redes sociais (opção 6).
 
-Estamos à disposição para atender você.`;
+😊 Estamos à disposição para atender você.`;
 }
 
 
@@ -117,14 +116,24 @@ function atendente() {
 📞 +55 (11) 2412-2186
 📞 +55 (11) 2412-1659
 
-Agradecemos pelo contato.`;
+💙 Agradecemos pelo contato.`;
 }
 
+function pix() {
+    return `💰 *Doação via PIX*
+
+Sua ajuda faz a diferença na vida de muitas famílias.
+
+📌 Chave PIX:
+nucleobatuira2@gmail.com
+
+💙 Agradecemos pela sua contribuição ao Núcleo Batuíra.`;
+}
 
 function erro() {
-    return `Opção inválida.
+    return `❌ Opção inválida.
 
-Por favor, selecione uma opção de 1 a 6 ou digite "menu" para voltar ao início.`;
+🔙 Por favor, selecione uma opção de 1 a 6 ou digite "menu" para voltar ao início.`;
 }
 
 
@@ -152,6 +161,8 @@ async function processarMensagem(from, text) {
     if (comando === "5") return endereco();
 
     if (comando === "6") return atendente();
+
+    if (comando === "7") return pix();
 
     if (comando.startsWith("cadastrar")) {
 
@@ -192,7 +203,7 @@ async function processarMensagem(from, text) {
                             return;
                         }
 
-                        resolve("Cadastro realizado com sucesso!");
+                        resolve("✅ Cadastro realizado com sucesso!");
                     }
                 );
             }
