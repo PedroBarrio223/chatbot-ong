@@ -1,11 +1,11 @@
 const mysql = require('mysql2');
 
 const db = mysql.createConnection({
-    host: "shuttle.proxy.rlwy.net",
+    host: "mysql.railway.internal",
     user: "root",
-    password: "PpjtIDVEYZseRJdmszeCIEoZyqRtVtjI",
+    password: "SDJHSzpcbjGIjJoagDFTHMZDdXkHpfPZ",
     database: "railway",
-    port: 12039
+    port: 3306
 });
 
 db.connect(err => {
